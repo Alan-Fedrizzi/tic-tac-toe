@@ -1,0 +1,92 @@
+:root {
+  --color-background: #343a40;
+  --color-background-light: #868e96;
+  --color-text: #f8f9fa;
+  --color-player-0: #38d9a9;
+  --color-player-1: #da77f2;
+}
+
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: inherit;
+}
+
+html {
+  box-sizing: border-box;
+  font-size: 62.5%;
+}
+
+body {
+  font-family: sans-serif;
+  font-weight: 400;
+  line-height: 1;
+  background-color: var(--color-background);
+  color: var(--color-text);
+  height: 100vh;
+  overflow: hidden;
+}
+
+.container {
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(3, 100px);
+  grid-template-rows: repeat(3, 100px);
+  gap: 20px;
+}
+.grid__cell {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.grid__button {
+  cursor: pointer;
+  border: none;
+  background: green;
+  height: 100%;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.grid__button:hover {
+  background-color: var(--color-background-light);
+}
+
+.icon {
+  height: 75%;
+  width: 75%;
+  display: none;
+}
+
+.grid__cell--player-0 {
+  background-color: var(--color-player-0);
+}
+.grid__cell--player-0 .icon__player-0 {
+  display: block;
+}
+.grid__cell--player-0 .icon__player-1 {
+  display: none;
+}
+
+.grid__cell--player-1 {
+  background-color: var(--color-player-1);
+}
+.grid__cell--player-1 .icon__player-0 {
+  display: none;
+}
+.grid__cell--player-1 .icon__player-1 {
+  display: block;
+}
+
+.grid__cell--disabled .grid__button {
+  pointer-events: none;
+}/*# sourceMappingURL=style.css.map */
