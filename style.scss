@@ -62,13 +62,11 @@ body {
     &:hover {
       background-color: var(--color-background-light);
     }
-  }
-}
 
-.icon {
-  height: 75%;
-  width: 75%;
-  display: none;
+    &--disabled {
+      pointer-events: none;
+    }
+  }
 }
 
 .grid__cell--player-0 {
@@ -92,12 +90,5 @@ body {
 
   .icon__player-1 {
     display: block;
-  }
-}
-
-.grid__cell--disabled .grid__button {
-  pointer-events: none;
-
-  &:hover {
   }
 }

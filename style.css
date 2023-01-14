@@ -60,11 +60,8 @@ body {
 .grid__button:hover {
   background-color: var(--color-background-light);
 }
-
-.icon {
-  height: 75%;
-  width: 75%;
-  display: none;
+.grid__button--disabled {
+  pointer-events: none;
 }
 
 .grid__cell--player-0 {
@@ -85,8 +82,4 @@ body {
 }
 .grid__cell--player-1 .icon__player-1 {
   display: block;
-}
-
-.grid__cell--disabled .grid__button {
-  pointer-events: none;
 }/*# sourceMappingURL=style.css.map */
