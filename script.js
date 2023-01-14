@@ -30,6 +30,23 @@ const assingPlayer = function (btn, currentPlayer) {
   changePlayer(currentPlayer);
 };
 
+const checkWinner = function (gridPosition, currentPlayer) {
+  if (gridPosition === 0) {
+    // 0 - 1 - 2
+    // 0 - 3 - 6
+    // 0 - 4 - 8
+  } else if (gridPosition === 1) {
+    // 1 - 4 - 7
+  } else if (gridPosition === 2) {
+    // 2 - 5 - 8
+    // 2 - 4 - 6
+  } else if (gridPosition === 3) {
+    // 3 - 4 - 5
+  } else if (gridPosition === 6) {
+    // 6 - 7 - 8
+  }
+};
+
 gridButtons.forEach((button) => {
   button.addEventListener("click", (e) => {
     const gridCell = e.target.closest(".grid__cell");
@@ -47,27 +64,3 @@ gridButtons.forEach((button) => {
     console.log(gridPosition);
   });
 });
-
-/*
-gridButtons.forEach((button) => {
-  button.addEventListener("click", (e) => {
-    if (player === 0) {
-      assignPlayerGrid();
-
-      // gridCell.classList.add("grid__cell--player-0");
-      // gridCell.classList.add("grid__cell--disabled");
-      // console.log(`click player ${player}`);
-      player = 2;
-    } else if (player === 1) {
-      const gridCell = e.target.closest(".grid__cell");
-
-      console.log(gridCell.dataset.position);
-
-      // gridCell.classList.add("grid__cell--player-1");
-      // gridCell.classList.add("grid__cell--disabled");
-      // console.log(`click player ${player}`);
-      player = 1;
-    }
-  });
-});
-*/
