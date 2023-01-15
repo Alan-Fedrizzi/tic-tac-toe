@@ -32,6 +32,11 @@ body {
   overflow: hidden;
 }
 
+.flex-column {
+  display: flex;
+  flex-direction: column;
+}
+
 .header {
   display: flex;
   align-items: center;
@@ -82,8 +87,7 @@ body {
 }
 
 .container {
-  height: calc(100% - 9rem);
-  // background: orange;
+  height: 100%;
   display: flex;
   justify-content: center;
   align-items: center;
