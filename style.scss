@@ -6,6 +6,9 @@
   --color-player-1: #da77f2;
 }
 
+// breakpoints
+$bp-md: 37.5em; // 600px;
+
 *,
 *::before,
 *::after {
@@ -29,8 +32,57 @@ body {
   overflow: hidden;
 }
 
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+  padding: 3rem 5rem 0;
+
+  @media only screen and (max-width: $bp-md) {
+    justify-content: space-between;
+  }
+
+  &__player-info {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 2rem;
+    position: relative;
+  }
+
+  &__player {
+    font-size: 2rem;
+  }
+
+  &__player-selected {
+    width: 120%;
+    height: 3rem;
+    background-color: transparent;
+    outline: 1rem solid goldenrod;
+    position: absolute;
+    top: -0.5rem;
+    left: 50%;
+    transform: translate(-50%, 0);
+    transition: all 0.3s ease-in-out;
+
+    &--player-2 {
+      transform: translate(-50%, 4rem);
+    }
+  }
+
+  &__reset {
+    padding: 1rem 2rem;
+    font-size: 2rem;
+    background-color: rgb(22, 205, 74);
+
+    &:hover {
+      background-color: #38d9a9;
+    }
+  }
+}
+
 .container {
-  height: 100%;
+  height: calc(100% - 9rem);
   // background: orange;
   display: flex;
   justify-content: center;
@@ -50,17 +102,12 @@ body {
   }
 
   &__button {
-    cursor: pointer;
-    border: none;
-    background: green;
+    background: rgb(22, 205, 74);
     height: 100%;
     width: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
 
     &:hover {
-      background-color: var(--color-background-light);
+      background-color: #38d9a9;
     }
 
     &--disabled {
@@ -93,7 +140,7 @@ body {
   }
 
   &__header {
-    padding: 1rem 2rem 3rem;
+    padding: 1rem;
   }
 
   &__close {
@@ -103,7 +150,7 @@ body {
   }
 
   &__content {
-    padding: 3rem;
+    padding: 2rem 2rem 3rem;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -139,14 +186,9 @@ body {
 }
 
 .btn-close {
-  display: flex;
-  align-items: center;
-  justify-content: center;
   padding: 0.4rem;
-  border: none;
   border-radius: 50%;
   background-color: transparent;
-  transition: all 0.3s;
   color: var(--color-text);
 
   &:hover {
@@ -158,4 +200,14 @@ body {
     width: 2.4rem;
     stroke: var(--light);
   }
+}
+
+// btn
+.btn {
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: none;
+  transition: all 0.3s;
 }

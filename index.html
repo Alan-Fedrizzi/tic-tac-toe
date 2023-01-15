@@ -9,43 +9,45 @@
     <title>tic-tac-toe</title>
   </head>
   <body>
-    <header class="header"></header>
+    <header class="header">
+      <div class="header__player-info">
+        <p class="header__player">PLAYER 1 - X</p>
+        <p class="header__player">PLAYER 2 - O</p>
+        <div class="header__player-selected">&nbsp;</div>
+      </div>
+      <div class="header__right">
+        <button class="btn header__reset">Reset</button>
+      </div>
+    </header>
 
     <main class="container">
       <div class="grid">
         <div class="grid__cell" data-position="0">
-          <button class="grid__button">
-            <!-- <svg class="icon icon__player-0">
-              <use xlink:href="assets/symbol-defs.svg#icon-radio-unchecked"></use>
-            </svg>
-            <svg class="icon icon__player-1">
-              <use xlink:href="assets/symbol-defs.svg#icon-cross"></use>
-            </svg> -->
-          </button>
+          <button class="btn grid__button"></button>
         </div>
         <div class="grid__cell" data-position="1">
-          <button class="grid__button"></button>
+          <button class="btn grid__button"></button>
         </div>
         <div class="grid__cell" data-position="2">
-          <button class="grid__button"></button>
+          <button class="btn grid__button"></button>
         </div>
         <div class="grid__cell" data-position="3">
-          <button class="grid__button"></button>
+          <button class="btn grid__button"></button>
         </div>
         <div class="grid__cell" data-position="4">
-          <button class="grid__button"></button>
+          <button class="btn grid__button"></button>
         </div>
         <div class="grid__cell" data-position="5">
-          <button class="grid__button"></button>
+          <button class="btn grid__button"></button>
         </div>
         <div class="grid__cell" data-position="6">
-          <button class="grid__button"></button>
+          <button class="btn grid__button"></button>
         </div>
         <div class="grid__cell" data-position="7">
-          <button class="grid__button"></button>
+          <button class="btn grid__button"></button>
         </div>
         <div class="grid__cell" data-position="8">
-          <button class="grid__button"></button>
+          <button class="btn grid__button"></button>
         </div>
       </div>
 
@@ -53,7 +55,7 @@
         <div class="modal__container">
           <div class="modal__header">
             <div class="modal__close">
-              <button class="btn-close">
+              <button class="btn btn-close">
                 <ion-icon class="btn-close__icon" name="close"></ion-icon>
               </button>
             </div>

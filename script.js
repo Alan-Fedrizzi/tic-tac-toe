@@ -1,20 +1,37 @@
 "use strict";
 
+//////////////////////
+// variables
+//////////////////////
+
+const playerSelected = document.querySelector(".header__player-selected");
+const buttonReset = document.querySelector(".header__reset");
 const gridCells = document.querySelectorAll(".grid__cell");
 const gridButtons = document.querySelectorAll(".grid__button");
 const modal = document.querySelector(".modal");
 const modalContent = document.querySelector(".modal__content");
+const modalOverlay = document.querySelector(".modal__overlay");
+const buttonClose = document.querySelector(".btn-close");
 
 let player = 1;
 const gridArray = [0, 0, 0, 0, 0, 0, 0, 0, 0];
 
+//////////////////////
+// functions
+//////////////////////
+
 const resetGame = function () {
   player = 1;
-  gridArray = [0, 0, 0, 0, 0, 0, 0, 0, 0];
+  playerSelected.classList.remove("header__player-selected--player-2");
+
+  gridArray.forEach((_, i) => (gridArray[i] = 0));
 
   gridButtons.forEach((button) => {
     button.innerHTML = "";
+    button.classList.remove("grid__button--disabled");
   });
+
+  modalContent.innerHTML = "";
 };
 
 const renderIcon = function (currentPlayer, btn) {
@@ -33,12 +50,18 @@ const disableButton = function (btn) {
 
 const changePlayer = function (currentPlayer) {
   currentPlayer === 1 ? (player = 2) : (player = 1);
+  playerSelected.classList.toggle("header__player-selected--player-2");
 };
 
 const assingPlayer = function (btn, position, currentPlayer) {
   renderIcon(currentPlayer, btn);
   disableButton(btn);
   gridArray[position] = currentPlayer;
+};
+
+const closeModal = function () {
+  modal.classList.remove("show-modal");
+  resetGame();
 };
 
 const showWinner = function (currentPlayer) {
@@ -49,6 +72,16 @@ const showWinner = function (currentPlayer) {
     </div>
   `;
   modalContent.insertAdjacentHTML("afterbegin", html);
+
+  [modalOverlay, buttonClose].forEach((element) => {
+    element.addEventListener("click", closeModal);
+  });
+
+  document.addEventListener("keydown", function (e) {
+    if (e.key === "Escape" && modal.classList.contains("show-modal")) {
+      closeModal();
+    }
+  });
 };
 
 const checkWinner = function (curPlayer) {
@@ -86,6 +119,12 @@ const checkRound = function (b, pos, pl) {
   checkWinner(pl);
   changePlayer(pl);
 };
+
+//////////////////////
+// event listeners
+//////////////////////
+
+buttonReset.addEventListener("click", resetGame);
 
 gridButtons.forEach((button) => {
   button.addEventListener("click", (e) => {
