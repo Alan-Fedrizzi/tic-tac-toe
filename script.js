@@ -15,6 +15,7 @@ const buttonClose = document.querySelector(".btn-close");
 
 let player = 1;
 const gridArray = [0, 0, 0, 0, 0, 0, 0, 0, 0];
+let isDraw = false;
 
 //////////////////////
 // functions
@@ -23,6 +24,7 @@ const gridArray = [0, 0, 0, 0, 0, 0, 0, 0, 0];
 const resetGame = function () {
   player = 1;
   playerSelected.classList.remove("header__player-selected--player-2");
+  isDraw = false;
 
   gridArray.forEach((_, i) => (gridArray[i] = 0));
 
@@ -64,11 +66,11 @@ const closeModal = function () {
   resetGame();
 };
 
-const showWinner = function (currentPlayer) {
+const showResult = function (currentPlayer) {
   modal.classList.add("show-modal");
   const html = `
     <div class="modal__text">
-      Player ${currentPlayer} wins!
+      ${isDraw ? "It's a draw!" : "Player " + currentPlayer + " wins!"}
     </div>
   `;
   modalContent.insertAdjacentHTML("afterbegin", html);
@@ -111,13 +113,21 @@ const checkWinner = function (curPlayer) {
       gridArray[7] === curPlayer &&
       gridArray[8] === curPlayer)
   )
-    showWinner(curPlayer);
+    showResult(curPlayer);
 };
 
 const checkRound = function (b, pos, pl) {
   assingPlayer(b, pos, pl);
   checkWinner(pl);
   changePlayer(pl);
+};
+
+const differentFromZero = (arr) => arr.every((val) => val !== 0);
+
+const checkDraw = function () {
+  isDraw = differentFromZero(gridArray);
+
+  if (isDraw) showResult();
 };
 
 //////////////////////
@@ -134,11 +144,9 @@ gridButtons.forEach((button) => {
     if (gridArray[gridPosition] === 1 || gridArray[gridPosition] === 2) return;
 
     if (gridArray[gridPosition] === 0) {
-      if (player === 1) {
-        checkRound(button, gridPosition, player);
-      } else if (player === 2) {
-        checkRound(button, gridPosition, player);
-      }
+      checkRound(button, gridPosition, player);
     }
+
+    checkDraw(gridArray);
   });
 });
