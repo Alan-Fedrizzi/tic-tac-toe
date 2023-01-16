@@ -86,6 +86,14 @@ const showResult = function (currentPlayer) {
   });
 };
 
+const differentFromZero = (arr) => arr.every((val) => val !== 0);
+
+const checkDraw = function () {
+  isDraw = differentFromZero(gridArray);
+
+  if (isDraw) showResult();
+};
+
 const checkWinner = function (curPlayer) {
   if (
     (gridArray[0] === curPlayer &&
@@ -112,22 +120,17 @@ const checkWinner = function (curPlayer) {
     (gridArray[6] === curPlayer &&
       gridArray[7] === curPlayer &&
       gridArray[8] === curPlayer)
-  )
+  ) {
     showResult(curPlayer);
+  } else {
+    checkDraw(gridArray);
+  }
 };
 
 const checkRound = function (b, pos, pl) {
   assingPlayer(b, pos, pl);
   checkWinner(pl);
   changePlayer(pl);
-};
-
-const differentFromZero = (arr) => arr.every((val) => val !== 0);
-
-const checkDraw = function () {
-  isDraw = differentFromZero(gridArray);
-
-  if (isDraw) showResult();
 };
 
 //////////////////////
@@ -146,7 +149,5 @@ gridButtons.forEach((button) => {
     if (gridArray[gridPosition] === 0) {
       checkRound(button, gridPosition, player);
     }
-
-    checkDraw(gridArray);
   });
 });
