@@ -1,9 +1,8 @@
 :root {
-  --color-background: #343a40;
-  --color-background-light: #868e96;
-  --color-text: #f8f9fa;
-  --color-player-0: #38d9a9;
-  --color-player-1: #da77f2;
+  --color-dark: #212529;
+  --color-grey: #343a40;
+  --color-light: #f1f3f5;
+  --colo-green: #16cd4a;
 }
 
 // breakpoints
@@ -34,15 +33,19 @@ $bp-md: 37.5em; // 600px;
 
 html {
   box-sizing: border-box;
-  font-size: 62.5%; // 1rem=10px
+  font-size: 62.5%; // 1rem = 10px
+
+  @media only screen and (max-width: $bp-md) {
+    font-size: 50%; // 1rem = 8px
+  }
 }
 
 body {
-  font-family: sans-serif;
+  font-family: "Press Start 2P", sans-serif;
   font-weight: 400;
   line-height: 1;
-  background-color: var(--color-background);
-  color: var(--color-text);
+  background-color: var(--color-dark);
+  color: var(--color-light);
   height: 100vh;
   overflow: hidden;
 }
@@ -52,6 +55,17 @@ body {
   flex-direction: column;
 }
 
+// btn
+.btn {
+  font-family: inherit;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: none;
+  transition: all 0.3s;
+}
+
 .header {
   display: flex;
   align-items: center;
@@ -59,6 +73,7 @@ body {
   padding: 3rem 5rem 0;
 
   @media only screen and (max-width: $bp-md) {
+    padding: 3rem 3.5rem 0;
     justify-content: space-between;
   }
 
@@ -75,7 +90,7 @@ body {
   }
 
   &__player-selected {
-    width: 120%;
+    width: 110%;
     height: 3rem;
     background-color: transparent;
     outline: 1rem solid goldenrod;
@@ -93,10 +108,10 @@ body {
   &__reset {
     padding: 1rem 2rem;
     font-size: 2rem;
-    background-color: rgb(22, 205, 74);
+    background-color: var(--colo-green);
 
     &:hover {
-      background-color: #38d9a9;
+      filter: brightness(1.5);
     }
   }
 }
@@ -112,7 +127,8 @@ body {
   display: grid;
   grid-template-columns: repeat(3, 100px);
   grid-template-rows: repeat(3, 100px);
-  gap: 20px;
+  gap: 10px;
+  background-color: var(--color-light);
 
   &__cell {
     display: flex;
@@ -121,12 +137,13 @@ body {
   }
 
   &__button {
-    background: rgb(22, 205, 74);
+    background: var(--color-dark);
     height: 100%;
     width: 100%;
+    color: var(--color-light);
 
     &:hover {
-      background-color: #38d9a9;
+      background-color: var(--color-grey);
     }
 
     &--disabled {
@@ -135,8 +152,8 @@ body {
   }
 
   &__icon {
-    font-size: 5rem;
-    animation: showIcon 0.5s cubic-bezier(0.18, 0.94, 0.73, 0.77);
+    font-size: 6rem;
+    animation: showIcon 0.4s cubic-bezier(0.18, 0.94, 0.73, 0.77);
   }
 }
 
@@ -147,7 +164,7 @@ body {
   visibility: hidden;
 
   &__container {
-    background-color: var(--color-background);
+    background-color: var(--color-dark);
     z-index: 3;
     position: fixed;
     top: 50%;
@@ -155,7 +172,6 @@ body {
     transform: translate(-50%, -50%);
     width: 100%;
     max-width: 40rem;
-    border-radius: 20px;
     overflow: hidden;
   }
 
@@ -179,7 +195,7 @@ body {
   }
 
   &__text {
-    font-size: 3rem;
+    font-size: 2.5rem;
   }
 
   &__overlay {
@@ -206,28 +222,18 @@ body {
 }
 
 .btn-close {
-  padding: 0.4rem;
-  border-radius: 50%;
+  font-size: 2rem;
+  padding: 0.8rem;
   background-color: transparent;
-  color: var(--color-text);
+  color: var(--color-light);
 
   &:hover {
     background: rgba(0, 0, 0, 0.15);
   }
 
-  &__icon {
-    height: 2.4rem;
-    width: 2.4rem;
-    stroke: var(--light);
-  }
-}
-
-// btn
-.btn {
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  border: none;
-  transition: all 0.3s;
+  // &__icon {
+  //   height: 2.4rem;
+  //   width: 2.4rem;
+  //   stroke: var(--light);
+  // }
 }

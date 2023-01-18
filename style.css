@@ -1,9 +1,8 @@
 :root {
-  --color-background: #343a40;
-  --color-background-light: #868e96;
-  --color-text: #f8f9fa;
-  --color-player-0: #38d9a9;
-  --color-player-1: #da77f2;
+  --color-dark: #212529;
+  --color-grey: #343a40;
+  --color-light: #f1f3f5;
+  --colo-green: #16cd4a;
 }
 
 @-webkit-keyframes showIcon {
@@ -41,13 +40,18 @@ html {
   box-sizing: border-box;
   font-size: 62.5%;
 }
+@media only screen and (max-width: 37.5em) {
+  html {
+    font-size: 50%;
+  }
+}
 
 body {
-  font-family: sans-serif;
+  font-family: "Press Start 2P", sans-serif;
   font-weight: 400;
   line-height: 1;
-  background-color: var(--color-background);
-  color: var(--color-text);
+  background-color: var(--color-dark);
+  color: var(--color-light);
   height: 100vh;
   overflow: hidden;
 }
@@ -55,6 +59,16 @@ body {
 .flex-column {
   display: flex;
   flex-direction: column;
+}
+
+.btn {
+  font-family: inherit;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: none;
+  transition: all 0.3s;
 }
 
 .header {
@@ -65,6 +79,7 @@ body {
 }
 @media only screen and (max-width: 37.5em) {
   .header {
+    padding: 3rem 3.5rem 0;
     justify-content: space-between;
   }
 }
@@ -79,7 +94,7 @@ body {
   font-size: 2rem;
 }
 .header__player-selected {
-  width: 120%;
+  width: 110%;
   height: 3rem;
   background-color: transparent;
   outline: 1rem solid goldenrod;
@@ -95,10 +110,10 @@ body {
 .header__reset {
   padding: 1rem 2rem;
   font-size: 2rem;
-  background-color: rgb(22, 205, 74);
+  background-color: var(--colo-green);
 }
 .header__reset:hover {
-  background-color: #38d9a9;
+  filter: brightness(1.5);
 }
 
 .container {
@@ -112,7 +127,8 @@ body {
   display: grid;
   grid-template-columns: repeat(3, 100px);
   grid-template-rows: repeat(3, 100px);
-  gap: 20px;
+  gap: 10px;
+  background-color: var(--color-light);
 }
 .grid__cell {
   display: flex;
@@ -120,20 +136,21 @@ body {
   align-items: center;
 }
 .grid__button {
-  background: rgb(22, 205, 74);
+  background: var(--color-dark);
   height: 100%;
   width: 100%;
+  color: var(--color-light);
 }
 .grid__button:hover {
-  background-color: #38d9a9;
+  background-color: var(--color-grey);
 }
 .grid__button--disabled {
   pointer-events: none;
 }
 .grid__icon {
-  font-size: 5rem;
-  -webkit-animation: showIcon 0.5s cubic-bezier(0.18, 0.94, 0.73, 0.77);
-          animation: showIcon 0.5s cubic-bezier(0.18, 0.94, 0.73, 0.77);
+  font-size: 6rem;
+  -webkit-animation: showIcon 0.4s cubic-bezier(0.18, 0.94, 0.73, 0.77);
+          animation: showIcon 0.4s cubic-bezier(0.18, 0.94, 0.73, 0.77);
 }
 
 .modal {
@@ -142,7 +159,7 @@ body {
   visibility: hidden;
 }
 .modal__container {
-  background-color: var(--color-background);
+  background-color: var(--color-dark);
   z-index: 3;
   position: fixed;
   top: 50%;
@@ -150,7 +167,6 @@ body {
   transform: translate(-50%, -50%);
   width: 100%;
   max-width: 40rem;
-  border-radius: 20px;
   overflow: hidden;
 }
 .modal__header {
@@ -170,7 +186,7 @@ body {
   gap: 1.6rem;
 }
 .modal__text {
-  font-size: 3rem;
+  font-size: 2.5rem;
 }
 .modal__overlay {
   position: fixed;
@@ -195,25 +211,11 @@ body {
 }
 
 .btn-close {
-  padding: 0.4rem;
-  border-radius: 50%;
+  font-size: 2rem;
+  padding: 0.8rem;
   background-color: transparent;
-  color: var(--color-text);
+  color: var(--color-light);
 }
 .btn-close:hover {
   background: rgba(0, 0, 0, 0.15);
-}
-.btn-close__icon {
-  height: 2.4rem;
-  width: 2.4rem;
-  stroke: var(--light);
-}
-
-.btn {
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  border: none;
-  transition: all 0.3s;
 }/*# sourceMappingURL=style.css.map */
