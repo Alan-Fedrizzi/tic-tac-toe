@@ -12,10 +12,13 @@ const modal = document.querySelector(".modal");
 const modalContent = document.querySelector(".modal__content");
 const modalOverlay = document.querySelector(".modal__overlay");
 const buttonClose = document.querySelector(".btn-close");
+const containerSelect = document.querySelector(".container__select");
 
 let player = 1;
 const gridArray = [0, 0, 0, 0, 0, 0, 0, 0, 0];
 let isDraw = false;
+
+let keyboardSelect = false;
 
 //////////////////////
 // functions
@@ -133,6 +136,17 @@ const checkRound = function (b, pos, pl) {
   changePlayer(pl);
 };
 
+const toggleKeyboardSelect = function () {
+  containerSelect.classList.toggle("container__select--show");
+  keyboardSelect = !keyboardSelect;
+};
+
+const updateSelectCoord = function (newCoord) {
+  setTimeout(() => {
+    containerSelect.dataset.coord = newCoord;
+  }, 100);
+};
+
 //////////////////////
 // event listeners
 //////////////////////
@@ -151,3 +165,167 @@ gridButtons.forEach((button) => {
     }
   });
 });
+
+document.addEventListener("keydown", function (e) {
+  // console.log(e.key);
+
+  // Show select
+  if (!containerSelect.classList.contains("container__select--show")) {
+    toggleKeyboardSelect();
+  }
+
+  // Hide select
+  if (
+    e.key === "Escape" &&
+    containerSelect.classList.contains("container__select--show")
+  ) {
+    toggleKeyboardSelect();
+  }
+
+  // Move select
+  if (containerSelect.classList.contains("container__select--show")) {
+    if (containerSelect.dataset.coord === "0") {
+      if (e.key === "ArrowRight") {
+        updateSelectCoord("1");
+      }
+      if (e.key === "ArrowLeft") {
+        updateSelectCoord("2");
+      }
+      if (e.key === "ArrowDown") {
+        updateSelectCoord("3");
+      }
+      if (e.key === "ArrowUp") {
+        updateSelectCoord("6");
+      }
+    }
+
+    if (containerSelect.dataset.coord === "1") {
+      if (e.key === "ArrowRight") {
+        updateSelectCoord("2");
+      }
+      if (e.key === "ArrowLeft") {
+        updateSelectCoord("0");
+      }
+      if (e.key === "ArrowDown") {
+        updateSelectCoord("4");
+      }
+      if (e.key === "ArrowUp") {
+        updateSelectCoord("7");
+      }
+    }
+
+    if (containerSelect.dataset.coord === "2") {
+      if (e.key === "ArrowRight") {
+        updateSelectCoord("0");
+      }
+      if (e.key === "ArrowLeft") {
+        updateSelectCoord("1");
+      }
+      if (e.key === "ArrowDown") {
+        updateSelectCoord("5");
+      }
+      if (e.key === "ArrowUp") {
+        updateSelectCoord("8");
+      }
+    }
+
+    if (containerSelect.dataset.coord === "3") {
+      if (e.key === "ArrowRight") {
+        updateSelectCoord("4");
+      }
+      if (e.key === "ArrowLeft") {
+        updateSelectCoord("5");
+      }
+      if (e.key === "ArrowDown") {
+        updateSelectCoord("6");
+      }
+      if (e.key === "ArrowUp") {
+        updateSelectCoord("0");
+      }
+    }
+
+    if (containerSelect.dataset.coord === "4") {
+      if (e.key === "ArrowRight") {
+        updateSelectCoord("5");
+      }
+      if (e.key === "ArrowLeft") {
+        updateSelectCoord("3");
+      }
+      if (e.key === "ArrowDown") {
+        updateSelectCoord("7");
+      }
+      if (e.key === "ArrowUp") {
+        updateSelectCoord("1");
+      }
+    }
+
+    if (containerSelect.dataset.coord === "5") {
+      if (e.key === "ArrowRight") {
+        updateSelectCoord("3");
+      }
+      if (e.key === "ArrowLeft") {
+        updateSelectCoord("4");
+      }
+      if (e.key === "ArrowDown") {
+        updateSelectCoord("8");
+      }
+      if (e.key === "ArrowUp") {
+        updateSelectCoord("2");
+      }
+    }
+
+    if (containerSelect.dataset.coord === "6") {
+      if (e.key === "ArrowRight") {
+        updateSelectCoord("7");
+      }
+      if (e.key === "ArrowLeft") {
+        updateSelectCoord("8");
+      }
+      if (e.key === "ArrowDown") {
+        updateSelectCoord("0");
+      }
+      if (e.key === "ArrowUp") {
+        updateSelectCoord("3");
+      }
+    }
+
+    if (containerSelect.dataset.coord === "7") {
+      if (e.key === "ArrowRight") {
+        updateSelectCoord("8");
+      }
+      if (e.key === "ArrowLeft") {
+        updateSelectCoord("6");
+      }
+      if (e.key === "ArrowDown") {
+        updateSelectCoord("1");
+      }
+      if (e.key === "ArrowUp") {
+        updateSelectCoord("4");
+      }
+    }
+
+    if (containerSelect.dataset.coord === "8") {
+      if (e.key === "ArrowRight") {
+        updateSelectCoord("6");
+      }
+      if (e.key === "ArrowLeft") {
+        updateSelectCoord("7");
+      }
+      if (e.key === "ArrowDown") {
+        updateSelectCoord("2");
+      }
+      if (e.key === "ArrowUp") {
+        updateSelectCoord("5");
+      }
+    }
+  }
+});
+
+// containerSelect
+// let keyboardSelect = false;
+
+// document.addEventListener('keydown', function (e) {
+//   if (e.key === 'Escape' && !modal.classList.contains('hidden')) {
+//     closeModal();
+//   }
+// });
