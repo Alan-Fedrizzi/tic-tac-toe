@@ -365,9 +365,3 @@ document.addEventListener("keydown", function (e) {
   }
   checkPosition(buttonKeyboard, gridPosition, player);
 });
-
-// document.addEventListener('keydown', function (e) {
-//   if (e.key === 'Escape' && !modal.classList.contains('hidden')) {
-//     closeModal();
-//   }
-// });
