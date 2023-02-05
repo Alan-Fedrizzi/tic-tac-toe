@@ -18,13 +18,23 @@ const checkboxKeyboard = document.getElementById("mode-keyboard");
 
 let player = 1;
 const gridArray = [0, 0, 0, 0, 0, 0, 0, 0, 0];
+let gridPosition;
 let isDraw = false;
-
 let keyboardSelect = false;
+let cellKeyboard;
+let buttonKeyboard;
 
 //////////////////////
 // functions
 //////////////////////
+
+const disableButton = function (btn) {
+  btn.classList.add("grid__button--disabled");
+};
+
+const enableButton = function (btn) {
+  btn.classList.remove("grid__button--disabled");
+};
 
 const resetGame = function () {
   player = 1;
@@ -35,8 +45,10 @@ const resetGame = function () {
 
   gridButtons.forEach((button) => {
     button.innerHTML = "";
-    button.classList.remove("grid__button--disabled");
+    enableButton(button);
   });
+
+  containerSelect.dataset.coord = "0";
 
   modalContent.innerHTML = "";
 };
@@ -49,10 +61,6 @@ const renderIcon = function (currentPlayer, btn) {
   `;
 
   btn.insertAdjacentHTML("afterbegin", html);
-};
-
-const disableButton = function (btn) {
-  btn.classList.add("grid__button--disabled");
 };
 
 const changePlayer = function (currentPlayer) {
@@ -138,6 +146,14 @@ const checkRound = function (b, pos, pl) {
   changePlayer(pl);
 };
 
+const checkPosition = function (button, gridPosition, player) {
+  if (gridArray[gridPosition] === 1 || gridArray[gridPosition] === 2) return;
+
+  if (gridArray[gridPosition] === 0) {
+    checkRound(button, gridPosition, player);
+  }
+};
+
 const toggleKeyboardSelect = function () {
   containerSelect.classList.toggle("container__select--show");
   checkboxMouse.classList.toggle("header__mode-select--selected");
@@ -151,6 +167,12 @@ const updateSelectCoord = function (newCoord) {
   }, 100);
 };
 
+const keyboardData = function (pos) {
+  cellKeyboard = document.querySelector(`[data-position="${pos}"]`);
+  buttonKeyboard = cellKeyboard.querySelector(".grid__button");
+  gridPosition = pos;
+};
+
 //////////////////////
 // event listeners
 //////////////////////
@@ -160,13 +182,9 @@ buttonReset.addEventListener("click", resetGame);
 gridButtons.forEach((button) => {
   button.addEventListener("click", (e) => {
     const gridCell = e.target.closest(".grid__cell");
-    const gridPosition = +gridCell.dataset.position;
+    gridPosition = +gridCell.dataset.position;
 
-    if (gridArray[gridPosition] === 1 || gridArray[gridPosition] === 2) return;
-
-    if (gridArray[gridPosition] === 0) {
-      checkRound(button, gridPosition, player);
-    }
+    checkPosition(button, gridPosition, player);
   });
 });
 
@@ -196,6 +214,9 @@ document.addEventListener("keydown", function (e) {
       if (e.key === "ArrowUp") {
         updateSelectCoord("6");
       }
+      if (e.key === "Enter") {
+        keyboardData(0);
+      }
     }
 
     if (containerSelect.dataset.coord === "1") {
@@ -210,6 +231,9 @@ document.addEventListener("keydown", function (e) {
       }
       if (e.key === "ArrowUp") {
         updateSelectCoord("7");
+      }
+      if (e.key === "Enter") {
+        keyboardData(1);
       }
     }
 
@@ -226,6 +250,9 @@ document.addEventListener("keydown", function (e) {
       if (e.key === "ArrowUp") {
         updateSelectCoord("8");
       }
+      if (e.key === "Enter") {
+        keyboardData(2);
+      }
     }
 
     if (containerSelect.dataset.coord === "3") {
@@ -240,6 +267,9 @@ document.addEventListener("keydown", function (e) {
       }
       if (e.key === "ArrowUp") {
         updateSelectCoord("0");
+      }
+      if (e.key === "Enter") {
+        keyboardData(3);
       }
     }
 
@@ -256,6 +286,9 @@ document.addEventListener("keydown", function (e) {
       if (e.key === "ArrowUp") {
         updateSelectCoord("1");
       }
+      if (e.key === "Enter") {
+        keyboardData(4);
+      }
     }
 
     if (containerSelect.dataset.coord === "5") {
@@ -270,6 +303,9 @@ document.addEventListener("keydown", function (e) {
       }
       if (e.key === "ArrowUp") {
         updateSelectCoord("2");
+      }
+      if (e.key === "Enter") {
+        keyboardData(5);
       }
     }
 
@@ -286,6 +322,9 @@ document.addEventListener("keydown", function (e) {
       if (e.key === "ArrowUp") {
         updateSelectCoord("3");
       }
+      if (e.key === "Enter") {
+        keyboardData(6);
+      }
     }
 
     if (containerSelect.dataset.coord === "7") {
@@ -300,6 +339,9 @@ document.addEventListener("keydown", function (e) {
       }
       if (e.key === "ArrowUp") {
         updateSelectCoord("4");
+      }
+      if (e.key === "Enter") {
+        keyboardData(7);
       }
     }
 
@@ -316,8 +358,12 @@ document.addEventListener("keydown", function (e) {
       if (e.key === "ArrowUp") {
         updateSelectCoord("5");
       }
+      if (e.key === "Enter") {
+        keyboardData(8);
+      }
     }
   }
+  checkPosition(buttonKeyboard, gridPosition, player);
 });
 
 // document.addEventListener('keydown', function (e) {
