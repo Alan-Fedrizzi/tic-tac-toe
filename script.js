@@ -13,6 +13,8 @@ const modalContent = document.querySelector(".modal__content");
 const modalOverlay = document.querySelector(".modal__overlay");
 const buttonClose = document.querySelector(".btn-close");
 const containerSelect = document.querySelector(".container__select");
+const checkboxMouse = document.getElementById("mode-mouse");
+const checkboxKeyboard = document.getElementById("mode-keyboard");
 
 let player = 1;
 const gridArray = [0, 0, 0, 0, 0, 0, 0, 0, 0];
@@ -138,6 +140,8 @@ const checkRound = function (b, pos, pl) {
 
 const toggleKeyboardSelect = function () {
   containerSelect.classList.toggle("container__select--show");
+  checkboxMouse.classList.toggle("header__mode-select--selected");
+  checkboxKeyboard.classList.toggle("header__mode-select--selected");
   keyboardSelect = !keyboardSelect;
 };
 
@@ -167,23 +171,18 @@ gridButtons.forEach((button) => {
 });
 
 document.addEventListener("keydown", function (e) {
-  // console.log(e.key);
-
   // Show select
-  if (!containerSelect.classList.contains("container__select--show")) {
+  if (!keyboardSelect) {
     toggleKeyboardSelect();
   }
 
   // Hide select
-  if (
-    e.key === "Escape" &&
-    containerSelect.classList.contains("container__select--show")
-  ) {
+  if (e.key === "Escape" && keyboardSelect) {
     toggleKeyboardSelect();
   }
 
   // Move select
-  if (containerSelect.classList.contains("container__select--show")) {
+  if (keyboardSelect) {
     if (containerSelect.dataset.coord === "0") {
       if (e.key === "ArrowRight") {
         updateSelectCoord("1");
@@ -320,9 +319,6 @@ document.addEventListener("keydown", function (e) {
     }
   }
 });
-
-// containerSelect
-// let keyboardSelect = false;
 
 // document.addEventListener('keydown', function (e) {
 //   if (e.key === 'Escape' && !modal.classList.contains('hidden')) {
