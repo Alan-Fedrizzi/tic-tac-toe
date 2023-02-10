@@ -26,6 +26,7 @@ let keyboardSelect = false;
 let cellKeyboard;
 let buttonKeyboard;
 let coord;
+let isLightMode = false;
 
 //////////////////////
 // functions
@@ -243,4 +244,15 @@ document.addEventListener("keydown", function (e) {
     keyboardData(coord);
     checkPosition(buttonKeyboard, gridPosition, player);
   }
+});
+
+buttonLightDark.addEventListener("click", function () {
+  body.classList.toggle("light-mode");
+  if (!isLightMode) {
+    buttonLightDark.textContent = "Dark Mode";
+  }
+  if (isLightMode) {
+    buttonLightDark.textContent = "Light Mode";
+  }
+  isLightMode = !isLightMode;
 });
