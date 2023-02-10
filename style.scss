@@ -1,6 +1,7 @@
 :root {
   --color-dark: #212529;
-  --color-grey: #343a40;
+  --color-grey-dark: #343a40;
+  --color-grey-light: #dee2e6;
   --color-light: #f1f3f5;
   --color-green: #16cd4a;
   --color-gold: #daa520;
@@ -8,7 +9,8 @@
   // light mode
   .light-mode {
     --color-dark: #f1f3f5;
-    --color-grey: #dee2e6;
+    --color-grey-dark: #dee2e6;
+    --color-grey-light: #343a40;
     --color-light: #212529;
     --color-green: #12a43b;
     --color-gold: #c4951d;
@@ -130,19 +132,42 @@ body {
     }
   }
 
-  &__reset {
+  &__right {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  &__button {
     padding: 1rem 2rem;
     font-size: 2rem;
-    background-color: var(--color-green);
-    color: var(--color-dark);
-
-    &:hover {
-      filter: brightness(1.1);
-    }
 
     @media only screen and (max-width: $bp-md) {
       font-size: 1.6rem;
       padding: 0.8rem 1.6rem;
+    }
+
+    &--reset {
+      background-color: var(--color-green);
+      color: var(--color-dark);
+      margin-bottom: 1.5rem;
+
+      @media only screen and (max-width: $bp-md) {
+        margin-bottom: 1rem;
+      }
+
+      &:hover {
+        filter: brightness(1.1);
+      }
+    }
+
+    &--light-dark {
+      background-color: var(--color-light);
+      color: var(--color-dark);
+
+      &:hover {
+        background-color: var(--color-grey-light);
+      }
     }
   }
 
@@ -274,7 +299,7 @@ body {
     color: var(--color-light);
 
     &:hover {
-      background-color: var(--color-grey);
+      background-color: var(--color-grey-dark);
     }
 
     &--disabled {

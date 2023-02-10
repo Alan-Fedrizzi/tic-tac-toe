@@ -1,13 +1,15 @@
 :root {
   --color-dark: #212529;
-  --color-grey: #343a40;
+  --color-grey-dark: #343a40;
+  --color-grey-light: #dee2e6;
   --color-light: #f1f3f5;
   --color-green: #16cd4a;
   --color-gold: #daa520;
 }
 :root .light-mode {
   --color-dark: #f1f3f5;
-  --color-grey: #dee2e6;
+  --color-grey-dark: #dee2e6;
+  --color-grey-light: #343a40;
   --color-light: #212529;
   --color-green: #12a43b;
   --color-gold: #c4951d;
@@ -119,20 +121,40 @@ body {
 .header__player-selected--player-2 {
   transform: translate(-50%, 4rem);
 }
-.header__reset {
+.header__right {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.header__button {
   padding: 1rem 2rem;
   font-size: 2rem;
-  background-color: var(--color-green);
-  color: var(--color-dark);
-}
-.header__reset:hover {
-  filter: brightness(1.1);
 }
 @media only screen and (max-width: 37.5em) {
-  .header__reset {
+  .header__button {
     font-size: 1.6rem;
     padding: 0.8rem 1.6rem;
   }
+}
+.header__button--reset {
+  background-color: var(--color-green);
+  color: var(--color-dark);
+  margin-bottom: 1.5rem;
+}
+@media only screen and (max-width: 37.5em) {
+  .header__button--reset {
+    margin-bottom: 1rem;
+  }
+}
+.header__button--reset:hover {
+  filter: brightness(1.1);
+}
+.header__button--light-dark {
+  background-color: var(--color-light);
+  color: var(--color-dark);
+}
+.header__button--light-dark:hover {
+  background-color: var(--color-grey-light);
 }
 .header__bottom {
   display: flex;
@@ -245,7 +267,7 @@ body {
   color: var(--color-light);
 }
 .grid__button:hover {
-  background-color: var(--color-grey);
+  background-color: var(--color-grey-dark);
 }
 .grid__button--disabled {
   pointer-events: none;
