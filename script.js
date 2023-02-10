@@ -23,6 +23,7 @@ let isDraw = false;
 let keyboardSelect = false;
 let cellKeyboard;
 let buttonKeyboard;
+let coord;
 
 //////////////////////
 // functions
@@ -49,6 +50,7 @@ const resetGame = function () {
   });
 
   containerSelect.dataset.coord = "0";
+  gridPosition = 0;
 
   modalContent.innerHTML = "";
 };
@@ -181,6 +183,9 @@ buttonReset.addEventListener("click", resetGame);
 
 gridButtons.forEach((button) => {
   button.addEventListener("click", (e) => {
+    if (keyboardSelect) {
+      toggleKeyboardSelect();
+    }
     const gridCell = e.target.closest(".grid__cell");
     gridPosition = +gridCell.dataset.position;
 
@@ -192,6 +197,7 @@ document.addEventListener("keydown", function (e) {
   // Show select
   if (!keyboardSelect) {
     toggleKeyboardSelect();
+    return;
   }
 
   // Hide select
@@ -199,169 +205,40 @@ document.addEventListener("keydown", function (e) {
     toggleKeyboardSelect();
   }
 
+  coord = +containerSelect.dataset.coord;
   // Move select
-  if (keyboardSelect) {
-    if (containerSelect.dataset.coord === "0") {
-      if (e.key === "ArrowRight") {
-        updateSelectCoord("1");
-      }
-      if (e.key === "ArrowLeft") {
-        updateSelectCoord("2");
-      }
-      if (e.key === "ArrowDown") {
-        updateSelectCoord("3");
-      }
-      if (e.key === "ArrowUp") {
-        updateSelectCoord("6");
-      }
-      if (e.key === "Enter") {
-        keyboardData(0);
-      }
-    }
-
-    if (containerSelect.dataset.coord === "1") {
-      if (e.key === "ArrowRight") {
-        updateSelectCoord("2");
-      }
-      if (e.key === "ArrowLeft") {
-        updateSelectCoord("0");
-      }
-      if (e.key === "ArrowDown") {
-        updateSelectCoord("4");
-      }
-      if (e.key === "ArrowUp") {
-        updateSelectCoord("7");
-      }
-      if (e.key === "Enter") {
-        keyboardData(1);
-      }
-    }
-
-    if (containerSelect.dataset.coord === "2") {
-      if (e.key === "ArrowRight") {
-        updateSelectCoord("0");
-      }
-      if (e.key === "ArrowLeft") {
-        updateSelectCoord("1");
-      }
-      if (e.key === "ArrowDown") {
-        updateSelectCoord("5");
-      }
-      if (e.key === "ArrowUp") {
-        updateSelectCoord("8");
-      }
-      if (e.key === "Enter") {
-        keyboardData(2);
-      }
-    }
-
-    if (containerSelect.dataset.coord === "3") {
-      if (e.key === "ArrowRight") {
-        updateSelectCoord("4");
-      }
-      if (e.key === "ArrowLeft") {
-        updateSelectCoord("5");
-      }
-      if (e.key === "ArrowDown") {
-        updateSelectCoord("6");
-      }
-      if (e.key === "ArrowUp") {
-        updateSelectCoord("0");
-      }
-      if (e.key === "Enter") {
-        keyboardData(3);
-      }
-    }
-
-    if (containerSelect.dataset.coord === "4") {
-      if (e.key === "ArrowRight") {
-        updateSelectCoord("5");
-      }
-      if (e.key === "ArrowLeft") {
-        updateSelectCoord("3");
-      }
-      if (e.key === "ArrowDown") {
-        updateSelectCoord("7");
-      }
-      if (e.key === "ArrowUp") {
-        updateSelectCoord("1");
-      }
-      if (e.key === "Enter") {
-        keyboardData(4);
-      }
-    }
-
-    if (containerSelect.dataset.coord === "5") {
-      if (e.key === "ArrowRight") {
-        updateSelectCoord("3");
-      }
-      if (e.key === "ArrowLeft") {
-        updateSelectCoord("4");
-      }
-      if (e.key === "ArrowDown") {
-        updateSelectCoord("8");
-      }
-      if (e.key === "ArrowUp") {
-        updateSelectCoord("2");
-      }
-      if (e.key === "Enter") {
-        keyboardData(5);
-      }
-    }
-
-    if (containerSelect.dataset.coord === "6") {
-      if (e.key === "ArrowRight") {
-        updateSelectCoord("7");
-      }
-      if (e.key === "ArrowLeft") {
-        updateSelectCoord("8");
-      }
-      if (e.key === "ArrowDown") {
-        updateSelectCoord("0");
-      }
-      if (e.key === "ArrowUp") {
-        updateSelectCoord("3");
-      }
-      if (e.key === "Enter") {
-        keyboardData(6);
-      }
-    }
-
-    if (containerSelect.dataset.coord === "7") {
-      if (e.key === "ArrowRight") {
-        updateSelectCoord("8");
-      }
-      if (e.key === "ArrowLeft") {
-        updateSelectCoord("6");
-      }
-      if (e.key === "ArrowDown") {
-        updateSelectCoord("1");
-      }
-      if (e.key === "ArrowUp") {
-        updateSelectCoord("4");
-      }
-      if (e.key === "Enter") {
-        keyboardData(7);
-      }
-    }
-
-    if (containerSelect.dataset.coord === "8") {
-      if (e.key === "ArrowRight") {
-        updateSelectCoord("6");
-      }
-      if (e.key === "ArrowLeft") {
-        updateSelectCoord("7");
-      }
-      if (e.key === "ArrowDown") {
-        updateSelectCoord("2");
-      }
-      if (e.key === "ArrowUp") {
-        updateSelectCoord("5");
-      }
-      if (e.key === "Enter") {
-        keyboardData(8);
-      }
+  if (e.key === "ArrowRight") {
+    if (coord === 2 || coord === 5 || coord === 8) {
+      coord = coord - 2;
+    } else {
+      coord = coord + 1;
     }
   }
-  checkPosition(buttonKeyboard, gridPosition, player);
+  if (e.key === "ArrowLeft") {
+    if (coord === 0 || coord === 3 || coord === 6) {
+      coord = coord + 2;
+    } else {
+      coord = coord - 1;
+    }
+  }
+  if (e.key === "ArrowDown") {
+    if (coord === 6 || coord === 7 || coord === 8) {
+      coord = coord - 6;
+    } else {
+      coord = coord + 3;
+    }
+  }
+  if (e.key === "ArrowUp") {
+    if (coord === 0 || coord === 1 || coord === 2) {
+      coord = coord + 6;
+    } else {
+      coord = coord - 3;
+    }
+  }
+  updateSelectCoord(coord);
+
+  if (e.key === "Enter") {
+    keyboardData(coord);
+    checkPosition(buttonKeyboard, gridPosition, player);
+  }
 });
