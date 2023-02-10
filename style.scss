@@ -3,7 +3,16 @@
   --color-grey: #343a40;
   --color-light: #f1f3f5;
   --color-green: #16cd4a;
-  --color-gold: goldenrod;
+  --color-gold: #daa520;
+
+  // light mode
+  .light-mode {
+    --color-dark: #f1f3f5;
+    --color-grey: #dee2e6;
+    --color-light: #212529;
+    --color-green: #12a43b;
+    --color-gold: #c4951d;
+  }
 }
 
 // breakpoints
@@ -22,15 +31,6 @@ $bp-md: 37.5em; // 600px;
   100% {
     transform: scale(1);
   }
-}
-
-// light mode
-.light-mode {
-  --color-dark: #f1f3f5;
-  --color-grey: 
-  --color-light: #212529;
-  --color-green: 
-  --color-gold: 
 }
 
 *,
@@ -134,9 +134,10 @@ body {
     padding: 1rem 2rem;
     font-size: 2rem;
     background-color: var(--color-green);
+    color: var(--color-dark);
 
     &:hover {
-      filter: brightness(1.5);
+      filter: brightness(1.1);
     }
 
     @media only screen and (max-width: $bp-md) {
