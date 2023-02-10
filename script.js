@@ -7,6 +7,7 @@
 const body = document.querySelector("body");
 const playerSelected = document.querySelector(".header__player-selected");
 const buttonReset = document.querySelector(".header__button--reset");
+const buttonLightDark = document.querySelector(".header__button--light-dark");
 const gridCells = document.querySelectorAll(".grid__cell");
 const gridButtons = document.querySelectorAll(".grid__button");
 const modal = document.querySelector(".modal");
