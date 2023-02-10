@@ -17,6 +17,14 @@
     transform: scale(1);
   }
 }
+.light-mode {
+  --color-dark: #f1f3f5;
+  --color-grey:
+  --color-light: #212529;
+  --color-green:
+  --color-gold: ;
+}
+
 *,
 *::before,
 *::after {

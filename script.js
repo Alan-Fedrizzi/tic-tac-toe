@@ -4,6 +4,7 @@
 // variables
 //////////////////////
 
+const body = document.querySelector("body");
 const playerSelected = document.querySelector(".header__player-selected");
 const buttonReset = document.querySelector(".header__reset");
 const gridCells = document.querySelectorAll(".grid__cell");
